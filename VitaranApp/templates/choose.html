@@ -10,14 +10,19 @@
     <title>Choose</title>
 </head>
 <body>
-    
+    {%if request.session.userLogin %}
     {% if data == None %}
-        Login to view this page
+    Login to view this page
     {% else %}
-        <p>Welcome {{data.first_name}} {{data.last_name}}</p>
-        <a href="/annually/{{encryptedID}}"><button class="btn btn-secondary">View Bill Annually</button></a>
-        <a href="/monthly/{{encryptedID}}"><button class="btn btn-secondary">View Bill Monthly</button></a> 
+    <p>Welcome {{data.first_name}} {{data.last_name}}</p>
+    <a href="/annually/{{encryptedID}}"><button class="btn btn-secondary">View Bill Annually</button></a>
+    <a href="/monthly/{{encryptedID}}"><button class="btn btn-secondary">View Bill Monthly</button></a> 
     {% endif %}
-
+    {%else%}
+      Login Again to view the dashboard!
+      <a href=""><button type="button" class="primary">Login</button></a>
+    {%endif%}
+    
+    
 </body>
 </html>

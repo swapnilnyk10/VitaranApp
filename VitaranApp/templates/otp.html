@@ -29,8 +29,10 @@
             <div class="col-md-7">
                 <form method="POST" name="myform">
                     {%csrf_token%}
+                    <div class="form-group">
                     <label for="">OTP</label>
                     <input type="text" class="form-control" id="otp" name="otp" value="" />
+                    </div>
                     <button type="submit" class="btn btn-primary">Verify OTP</button>
                 </form>
             </div>

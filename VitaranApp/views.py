@@ -11,6 +11,7 @@ from email.mime.text import MIMEText
 from django.contrib import messages
 import pdfkit
 from django.template import loader
+from django.contrib import sessions
 # Create your views here.
 
 def login(request):
@@ -65,6 +66,7 @@ def check_otp(request,otp,Employee_ID):
          otp_filled = request.POST.get("otp")
          
          if otp_filled == decrypt(otp):
+            request.session['userLogin'] = True
             return redirect(choose, Employee_ID = Employee_ID)
          else:
             return HttpResponse("Otp Incorrect! Try Again.")
@@ -197,6 +199,8 @@ def viewmonthly(request,month,year,encryptedID):
         'page-size':'Letter',
         'encoding' : "UTF-8"
     }
+    if bill is None:
+       return render(request, 'viewmonthly.html', {'user': user , 'bill':bill})
     pdf = pdfkit.from_string(html,False,options)
     response = HttpResponse(pdf,content_type = 'application/pdf')
     response['Content-Diposition'] = 'attachment'
