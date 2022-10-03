@@ -9,6 +9,8 @@ from .models import Bill, Profile, User
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from django.contrib import messages
+import pdfkit
+from django.template import loader
 # Create your views here.
 
 def login(request):
@@ -155,7 +157,21 @@ def viewannually(request,year,encryptedID):
             total_units += int(i.current_units) - int(i.previous_units)
             total_net += i.net_billed_amount
             total_payable += i.payable_amount
-        return render(request, 'viewannually.html', { 'user': user ,'year':year, 'total_units':total_units, 'total_net':total_net, 'total_payable': total_payable})
+        # return render(request, 'viewannually.html', { 'user': user ,'year':year, 'total_units':total_units, 'total_net':total_net, 'total_payable': total_payable})
+    
+        # below code is for pdf -------->
+
+        template = loader.get_template('viewannually.html')
+        html = template.render({ 'user': user ,'year':year, 'total_units':total_units, 'total_net':total_net, 'total_payable': total_payable})
+        options = {
+            'page-size':'Letter',
+            'encoding' : "UTF-8"
+        }
+        pdf = pdfkit.from_string(html,False,options)
+        response = HttpResponse(pdf,content_type = 'application/pdf')
+        response['Content-Diposition'] = 'attachment'
+        filename = "Bill.pdf"
+        return response
     else :
         msg = "No Bills found !!!"
         return render(request, 'viewannually.html', {'msg':msg})
@@ -172,7 +188,21 @@ def viewmonthly(request,month,year,encryptedID):
         bill = Bill.objects.get(Employee_ID = Employee_ID,  year = year, month = month)
     except Bill.DoesNotExist:
         bill = None
-    return render(request, 'viewmonthly.html', {'user': user , 'bill':bill})
+
+    # below code is for pdf -------->
+        
+    template = loader.get_template('viewmonthly.html')
+    html = template.render({ 'user': user , 'bill':bill})
+    options = {
+        'page-size':'Letter',
+        'encoding' : "UTF-8"
+    }
+    pdf = pdfkit.from_string(html,False,options)
+    response = HttpResponse(pdf,content_type = 'application/pdf')
+    response['Content-Diposition'] = 'attachment'
+    filename = "Bill.pdf"
+    return response
+    # return render(request, 'viewmonthly.html', {'user': user , 'bill':bill})
 
 def viewalluser(request):
     alluser = Profile.objects.all()
