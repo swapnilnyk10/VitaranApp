@@ -1,0 +1,17 @@
+{% if msg is not None %}
+    <h1>No Bill found !!!</h1>
+{% else %}
+    <h1>Name : {{user.first_name}} {{user.last_name}}</h1> 
+    <h2>Year : {{year}}</h2> 
+    <h3>Employee ID : {{user.Employee_ID}}</h3> 
+    <p>Phone No. = {{user.Phone}}</p> 
+    <p>Email = {{user.Email}}</p> 
+    <p>Quarter No. = {{user.quarter_no}}</p> 
+    <p>Meter No. = {{user.meter_no}}</p>
+    <p>Total Units = {{total_units}}</p> <br>
+
+    <h1>Net Billed Amount : {{total_net}}</h1>
+    <h1>Payable Amount : {{total_payable}}</h1>
+    
+{% endif %}
+    

@@ -1,0 +1,18 @@
+{% if bill is None %}
+    <h1>No Bill found !!!</h1>
+    {% else %}
+    <h1>Name : {{user.first_name}} {{user.last_name}}</h1> 
+    <h2>Month : {{bill.month}}</h2>
+    <h2>Year : {{bill.year}}</h2> 
+    <h3>Employee ID : {{user.Employee_ID}}</h3> 
+    <p>Phone No. = {{user.Phone}}</p> 
+    <p>Email = {{user.Email}}</p> 
+    <p>Quarter No. = {{user.quarter_no}}</p> 
+    <p>Meter No. = {{user.meter_no}}</p>
+    <p>Tariff = {{bill.tariff}}</p> 
+    <p>Current Units = {{bill.current_units}}</p> 
+    <p>Previous Units = {{bill.previous_units}}</p><br>
+
+    <h1>Net Billed Amount : {{bill.net_billed_amount}}</h1>
+    <h1>Payable Amount : {{bill.payable_amount}}</h1>
+{% endif %}

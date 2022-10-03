@@ -1,0 +1,14 @@
+{% if success is True %}
+    <h2>User deleted succcessfully !!!</h2>
+{% endif %}
+   
+{% if userExist is False %}
+    <h2>User with entered Employee_ID does not exist !!!</h2>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    <label for="Employee_ID">Enter Employee_ID of User you want to delete : </label>
+    <input type="number" id="Employee_ID" name= "Employee_ID"> <br>
+    <input type="submit" value= "Delete" id= "submit">
+</form>

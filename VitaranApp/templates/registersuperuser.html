@@ -1,0 +1,32 @@
+{% if userExist is True %}
+    <h2>A user with same username already exist !!!</h2>
+    {% else %}
+        {% if samePassword is True %}
+        <h2>Superuser added succcessfully !!!</h2>
+        {% endif %}    
+    {% endif %}
+    {% if samePassword is False %}
+        <h2>Passwords doesn't match !!!</h2>
+        <h3>Try Again ...</h3>
+    {% endif %}
+    
+    {% if userExist == None %}
+        <h2>Enter below details to add a superuser ...</h2>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    <label for="firstname">First Name : </label>
+    <input type="text" name = "first_name" id = "first_name" required> <br>
+    <label for="lastname">Last Name : </label>
+    <input type="text" name = "last_name" id = "last_name" required> <br>
+    <label for="username">Username : </label>
+    <input type="text" id = "username" name = "username" required> <br>
+    <label for="email">Email : </label>
+    <input type="email" id = "email" name = "email" required> <br>
+    <label for="password1">Enter Password : </label>
+    <input type="password" name="password1" id="password1" required><br>
+    <label for="password2">Confirm Password : </label>
+    <input type="password" name="password2" id="password2" required><br><br>
+    <input type="submit" value = "Add Superuser" id = "submit">
+</form>

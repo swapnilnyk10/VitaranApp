@@ -1,0 +1,22 @@
+{% if msg != NULL %}
+        <h2>A user with same Employee ID already exists !!!!</h2>
+        <h3>Please recheck and try again.....</h3> <br>
+{% endif %}
+<form method="POST" >
+    {% csrf_token %}
+    <label for="first_name">First Name : </label>
+    <input type="text" id = "first_name" name = "first_name" required> <br>
+    <label for="last_name">Last Name : </label>
+    <input type="text" id = "last_name" name = "last_name" required> <br>
+    <label for="Employee_ID">Employee_ID : </label>
+    <input type="number" name= "Employee_ID" id = "Employee_ID" required> <br>
+    <label for="Phone">Phone No. : </label>
+    <input type="number" id= "Phone" name = "Phone" required> <br>
+    <label for="Email"> Email : </label>
+    <input type="email" id = "Email" name = "Email" required> <br>
+    <label for="quarter_no"> Quarter No. : </label>
+    <input type="text" id = "quarter_no" name = "quarter_no" required> <br>
+    <label for="meter_no">Meter No. : </label>
+    <input type="number" id = "meter_no" name = "meter_no" required> <br>
+    <input type="submit"  value="Add User" id="submit">
+</form>
