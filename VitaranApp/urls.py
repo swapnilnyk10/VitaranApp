@@ -1,7 +1,6 @@
-from django.urls import path
+from django.urls import path, re_path
 from django.contrib.auth import views as auth_views
 from . import views
-
 urlpatterns = [
     path('',views.index,name='index'),
     path('indexsuperuser/<str:username>/',views.indexsuperuser,name='indexsuperuser'),
@@ -9,7 +8,6 @@ urlpatterns = [
     path('login/',views.login,name = 'login'),
     path('loginsuperuser/',views.loginsuperuser,name = 'loginsuperuser'),
     # path('logoutsuperuser/',views.logoutsuperuser,name = 'logsuperuser'),
-
     path('viewannually/<int:year>/<str:encryptedID>/',views.viewannually,name = 'viewannually'),
     path('viewmonthly/<str:month>/<int:year>/<str:encryptedID>/',views.viewmonthly,name = 'viewmonthly'),
     path('viewalluser/',views.viewalluser,name = 'viewalluser'),

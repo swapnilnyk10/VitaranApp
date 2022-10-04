@@ -15,8 +15,8 @@
     Login to view this page
     {% else %}
     <p>Welcome {{data.first_name}} {{data.last_name}}</p>
-    <a href="/annually/{{encryptedID}}"><button class="btn btn-secondary">View Bill Annually</button></a>
-    <a href="/monthly/{{encryptedID}}"><button class="btn btn-secondary">View Bill Monthly</button></a> 
+    <a href="/annually/{{encryptedID}}"><button class="btn btn-primary">View Bill Annually</button></a>
+    <a href="/monthly/{{encryptedID}}"><button class="btn btn-primary">View Bill Monthly</button></a> 
     {% endif %}
     {%else%}
       Login Again to view the dashboard!

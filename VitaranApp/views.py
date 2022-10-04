@@ -1,3 +1,4 @@
+from pickle import FALSE
 from queue import Empty
 from django.shortcuts import render,HttpResponse,redirect
 from .forms import Register
@@ -12,15 +13,19 @@ from django.contrib import messages
 import pdfkit
 from django.template import loader
 from django.contrib import sessions
+from django.http import JsonResponse
 # Create your views here.
 
 def login(request):
+    flag = False
     if request.method == "POST":
         Employee_ID = request.POST.get("Employee_ID")
         check = Profile.objects.filter(Employee_ID = Employee_ID).first()
 
         if check is None:
-          return HttpResponse("Invalid Employee ID")
+            flag = True
+        #   return JsonResponse({'success':False},safe=False)
+            return render(request,'login.html',{'flag':flag})
         else:
           data = Profile.objects.get(Employee_ID = Employee_ID)
           Email = data.Email
@@ -28,7 +33,7 @@ def login(request):
           e = encrypt(Email)
           EmployeeID = encrypt(Employee_ID)
           return redirect(send_otp,Email = e, Employee_ID = EmployeeID)
-    return render(request,'login.html')
+    return render(request,'login.html',{'flag':flag})
 
 def generate_otp():
         digits = "0123456789"
@@ -62,6 +67,7 @@ def send_otp(request,Email, Employee_ID):
     # return HttpResponse(o)
     return redirect(check_otp,otp = o, Employee_ID = Employee_ID)
 def check_otp(request,otp,Employee_ID):
+    flag=True
     if request.method == "POST":
          otp_filled = request.POST.get("otp")
          
@@ -69,8 +75,9 @@ def check_otp(request,otp,Employee_ID):
             request.session['userLogin'] = True
             return redirect(choose, Employee_ID = Employee_ID)
          else:
-            return HttpResponse("Otp Incorrect! Try Again.")
-    return render(request,'otp.html')
+            flag=False
+            return render(request,'otp.html',{'flag':flag})
+    return render(request,'otp.html',{'flag':flag})
 
 # ------
 

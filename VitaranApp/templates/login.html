@@ -1,29 +1,4 @@
 {%extends 'base.html'%}
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In</title>
-</head>
-<body>
-    <div class="styleform">
-        <form action="login_dr" method="POST" class = "form" >
-            {% csrf_token %}
-            <label for="Username">Username : </label>
-            <input type="text" name="username" placeholder="SwapnilNayak10" required><br><br>
-            <input type="submit" value="Log In!" id="login"><br>
-        </form>
-    </div>
-</body>
-</html> {% endcomment %}
-
-
-{% comment %} --------------> {% endcomment %}
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,8 +27,11 @@
                   <div class="form-group">
                     <label for="">Employee ID</label>
                     <input type="text"  class="form-control input-sm" id="Employee_ID" placeholder="Enter your Employee ID" name="Employee_ID" value="" maxlength = "10"/>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Verify Employee ID</button>
+                    {%if flag is True%}
+                    <small id="response-comment" class="form-text text-muted" style="color: red;">Employee ID invalid!</small> 
+                    {%endif%}
+                </div>
+                  <button type="submit" class="btn btn-primary" id="VerifyEmp">Verify Employee ID</button>
                 </form>
            </div>
         </div>

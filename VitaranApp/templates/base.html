@@ -1,4 +1,4 @@
-{%load static%}
+{%load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,16 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- Latest compiled and minified CSS -->
+     <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+     
      <!-- <link rel="stylesheet" href="{% static 'testapp/style.css' %}"> -->
      <!-- jQuery library -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
  
      <!-- Latest compiled JavaScript -->
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Document</title>
+    <title>MNNIT Vitaran</title>
 </head>
 <body>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img src="/static/MNNITlogo.png"  class="navbar-brand-center" alt="MNNIT ALLAHABAD" style="margin: 5px;
+            display: block;
+            max-width:130px;
+            max-height:68px;
+            width: auto;
+            height: auto;">
+        <span class="col-md-8 mx-auto text-center">
+            <a class="navbar-brand" href="/">
+                  <h5>
+                   <b>Electricity Bill Distribution Portal<br>MNNIT Allahabad</b>
+                  </h5>
+            </a>
+        </span>
+    </nav>
+    </div>
+    <div class="loader-wrapper">
+    <div class="loader"></div>
+    </div>
+    <script>
+    </script>
     {%block body%}
     {%endblock%}
 </body>
