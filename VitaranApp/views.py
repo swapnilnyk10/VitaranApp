@@ -56,15 +56,8 @@ def send_otp(request,Email, Employee_ID):
     html = 'Your OTP for MNNIT VITARAN is'+' '+'<strong>'+decrypt(o)+'</strong>'+'.'+'<br><br><i>Please do not share this <strong>OTP</strong>. <br> This Email is auto generated and replies are not supported.</i>'
     email_message.attach(MIMEText(html, "html"))
     email_string = email_message.as_string()
-    # email = 'swapnilnyk10@gmail.com'
-    
     server.sendmail(email_from,email_to,email_string)
     server.quit()
-
-    # send_email = ('OTP request',o,'pandey.sachin0611@gmail.com',)
-    # send_mail('OTP request',o,'pandey.sachin0611@gmail.com',[email], fail_silently=False, html_message=htmlgen)
-    # print(o)
-    # return HttpResponse(o)
     return redirect(check_otp,otp = o, Employee_ID = Employee_ID)
 def check_otp(request,otp,Employee_ID):
     flag=True
