@@ -14,6 +14,7 @@ import pdfkit
 from django.template import loader
 from django.contrib import sessions
 from django.http import JsonResponse
+from decouple import config
 # Create your views here.
 
 def login(request):
@@ -43,11 +44,11 @@ def generate_otp():
         return otp
 
 def send_otp(request,Email, Employee_ID):
-    server = smtplib.SMTP('smtp.gmail.com',587)
+    server = smtplib.SMTP(config('EMAIL_SERVER'),config('EMAIL_PORT',cast=int))
     server.starttls()
-    email_from = 'pandey.sachin0611@gmail.com'
+    email_from = config('EMAIL_FROM')
     email_to = decrypt(Email)
-    server.login(email_from,'coytpungzeirenkz')
+    server.login(email_from,config('EMAIL_PASSWORD'))
     o=encrypt(generate_otp())
     email_message = MIMEMultipart()
     email_message['From'] = email_from
@@ -59,6 +60,7 @@ def send_otp(request,Email, Employee_ID):
     server.sendmail(email_from,email_to,email_string)
     server.quit()
     return redirect(check_otp,otp = o, Employee_ID = Employee_ID)
+
 def check_otp(request,otp,Employee_ID):
     flag=True
     if request.method == "POST":

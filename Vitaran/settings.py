@@ -28,7 +28,7 @@ DEBUG = config('DEBUG',cast=bool)
 
 ALLOWED_HOSTS = []
 
-ENCRYPT_KEY = b'uoVgEb8ARloesWDfC7qcVT3YB5-vAtWBU6ZlGM2McV0='
+ENCRYPT_KEY = bytes(config('ENCRYPT_KEY'),'utf-8')
 # Application definition
 
 INSTALLED_APPS = [
