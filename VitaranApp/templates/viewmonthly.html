@@ -1,18 +1,232 @@
-{% if bill is None %}
-    <h1>No Bill found !!!</h1>
-    {% else %}
-    <h1>Name : {{user.first_name}} {{user.last_name}}</h1> 
-    <h2>Month : {{bill.month}}</h2>
-    <h2>Year : {{bill.year}}</h2> 
-    <h3>Employee ID : {{user.Employee_ID}}</h3> 
-    <p>Phone No. = {{user.Phone}}</p> 
-    <p>Email = {{user.Email}}</p> 
-    <p>Quarter No. = {{user.quarter_no}}</p> 
-    <p>Meter No. = {{user.meter_no}}</p>
-    <p>Tariff = {{bill.tariff}}</p> 
-    <p>Current Units = {{bill.current_units}}</p> 
-    <p>Previous Units = {{bill.previous_units}}</p><br>
+<!-- -------------PDF GENERATEOR --------------- -->
 
-    <h1>Net Billed Amount : {{bill.net_billed_amount}}</h1>
-    <h1>Payable Amount : {{bill.payable_amount}}</h1>
-{% endif %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.common.min.css" />
+<script src="https://kendo.cdn.telerik.com/2017.1.223/js/jszip.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.all.min.js"></script>
+<br>
+<center><button id="pdf-generate" class="btn btn-primary">Download</button></center>
+<br><br>
+    <div id="example">
+    <div class="box wide hidden-on-narrow">
+    </div>
+
+    <div class="page-container hidden-on-narrow">
+        <div class="pdf-page size-a4">
+            <page size="A4">
+               
+               <!-- PDF CONTENT START -->
+               {% if bill is None %}
+                <h1>No Bill found !!!</h1>
+               {% else %}
+               <div class="table-responsive-sm" style="padding: 20px;">
+                <table class="table table-striped table-bordered table-hover table-md">
+                  <thead class="thead-dark">
+                <tr>
+                  <th><center><img
+                    src="/static/MNNITlogo.png"
+                    class="navbar-brand-center"
+                    alt="MNNIT ALLAHABAD"
+                    style="
+                      margin: 12px;
+                      display: block;
+                      max-width: 150px;
+                      max-height: 78px;
+                      width: auto;
+                      height: auto;
+                    "/></center>
+                    </th>
+                    <th><center>Electricity Supply Works and Maintenance Section<br>MNNIT Allahabad<br><br><small>{{bill.month}} - {{bill.year}}</small></center></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td colspan="2"><center><strong>Electricity Bill</strong></center></td></tr>
+                <tr><td colspan="2"><center><strong>Details of Resident</strong></center></td></tr>
+                <tr>
+                    <td>Quarter No.</td><td><center>{{user.quarter_no}}</center></td>
+                </tr>
+                <tr>
+                    <td>Name of Resident</td><td><center>{{user.Name}}</center></td>
+                </tr>
+                <tr>
+                    <td>Employee ID</td><td><center>{{user.Employee_ID}}</center></td>
+                </tr>
+                <tr>
+                    <td>Meter No.</td><td><center>{{user.meter_no}}</center></td>
+                </tr>
+                <tr>
+                    <td>Sanctioned Load</td><td><center>{{bill.sanction_load}}</center></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><center><strong>Bill details</strong></center></td>
+                </tr>
+                <tr>
+                    <td>Bill Year</td><td><center>{{bill.year}}</center></td>
+                </tr>
+                <tr>
+                    <td>Bill Month</td><td><center>{{bill.month}}</center></td>
+                </tr>
+                <tr>
+                    <td>Previous Units</td><td><center>{{bill.previous_units}}</center></td>
+                </tr>
+                <tr>
+                    <td>Fixed KVA charges</td><td><center>{{bill.KVA_charge}}</center></td>
+                </tr>
+                <tr>
+                    <td>Current Units</td><td><center>{{bill.current_units}}</center></td>
+                </tr>
+                <!-- <tr>
+                    <td>Net Billed Unit</td><td><center>{{total_units}}</center></td>
+                </tr> -->
+                <!-- <tr>
+                    <td>Net Billed Amount</td><td><center>{{bill.net_billed_amount}}</center></td>
+                </tr> -->
+                <tr>
+                    <td>Total Payable Amount</td><td><center>{{bill.payable_amount}}</center></td>
+                </tr>
+                <tr><td colspan="3"><center><strong>EC Calculation</strong></center></td></tr>
+                <tr>
+                    <td><strong>Unit</strong></td>
+                    <td><strong><center>Rates (Rs.)</center></strong></td>
+                </tr>
+                {%if bill.unitP1 > 0%}
+                <tr>
+                    <td>P1: {{bill.unitP1}}</td>
+                    <td><center>{{bill.rateP1}}</center></td>
+                    <!-- <td>825</td> -->
+                </tr>
+                {%endif%}
+                {%if bill.unitP2 > 0%}
+                <tr>
+                    <td>P2: {{bill.unitP2}}</td>
+                    <td><center>{{bill.rateP2}}</center></td>
+                    <!-- <td>825</td> -->
+                </tr>
+                {%endif%}
+                {%if bill.unitP3 > 0%}
+                <tr>
+                    <td>P3: {{bill.unitP3}}</td>
+                    <td><center>{{bill.rateP3}}</center></td>
+                    <!-- <td>825</td> -->
+                </tr>
+                {%endif%}
+                {%if bill.unitP4 > 0%}
+                <tr>
+                    <td>P4: {{bill.unitP4}}</td>
+                    <td><center>{{bill.rateP4}}</center></td>
+                    <!-- <td>825</td> -->
+                </tr>
+                {%endif%}
+                {%if bill.unitP5 > 0%}
+                <tr>
+                    <td>P5: {{bill.unitP5}}</td>
+                    <td><center>{{bill.rateP5}}</center></td>
+                </tr>
+                {%endif%}
+                <tr>
+                    <td>greater than {{total_unit}} units</td>
+                    <td><center>{{bill.rateP6}}</center></td>
+                </tr>
+                </tbody>
+              </table>
+              {% endif %}
+
+
+               <!-- PDF CONTENT END -->
+
+            </page>
+        </div>
+    </div>
+    
+    <div class="responsive-message"></div>
+
+    <style>
+        /*
+            Use the DejaVu Sans font for display and embedding in the PDF file.
+            The standard PDF fonts have no support for Unicode characters.
+        */
+        td{
+            font-size: 10px;
+        }
+        table, th, td {
+  border:1px solid black;
+  padding: 3px;
+  margin: auto;
+  border-collapse: collapse;
+}
+tr:nth-child(even) {
+  background-color: #F0F0F0;
+}
+        .pdf-page {
+            font-family: "DejaVu Sans", "Arial", sans-serif;
+        }
+        .image{
+               margin: 12px;
+               display: block;
+               max-width: 150px;
+               max-height: 78px;
+               width: auto;
+               height: auto;
+        }
+        .heading{
+            font-size: 15px;
+        }
+    </style>
+
+    <script>
+        // Import DejaVu Sans font for embedding
+
+        // NOTE: Only required if the Kendo UI stylesheets are loaded
+        // from a different origin, e.g. cdn.kendostatic.com
+        kendo.pdf.defineFont({
+            "DejaVu Sans"             : "https://kendo.cdn.telerik.com/2016.2.607/styles/fonts/DejaVu/DejaVuSans.ttf",
+            "DejaVu Sans|Bold"        : "https://kendo.cdn.telerik.com/2016.2.607/styles/fonts/DejaVu/DejaVuSans-Bold.ttf",
+            "DejaVu Sans|Bold|Italic" : "https://kendo.cdn.telerik.com/2016.2.607/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
+            "DejaVu Sans|Italic"      : "https://kendo.cdn.telerik.com/2016.2.607/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf"
+        });
+    </script>
+
+    <!-- Load Pako ZLIB library to enable PDF compression -->
+    <!-- <script src="../content/shared/js/pako.min.js"></script> -->
+
+    <script>
+      function getPDF(selector) {
+        kendo.drawing.drawDOM($(selector)).then(function(group){
+          kendo.drawing.pdf.saveAs(group, '{{user.Employee_ID}}_{{bill.month}}_{{bill.year}}_Bill.pdf');
+        });
+      }
+    </script>
+    <style>
+    * {
+        box-sizing: border-box;
+    }
+    body {
+          font-family: 'Montserrat', sans-serif;
+    }
+    page[size="A4"] {  
+      width: 790px;
+      height: 1000px; 
+    }
+    page {
+      background: white; 
+      display: block;
+      margin: 0 auto;
+    }
+
+</style>
+
+</div>
+
+<script type="text/javascript">
+       $('#pdf-generate').click(function(){
+         getPDF('.pdf-page');
+       })
+</script>

@@ -1,0 +1,26 @@
+* {
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 480px){
+    .div2{
+        position: relative;
+        min-height: 1px;
+        padding-right: 100px;
+        padding-left: 20px;
+    }
+    .heading2{
+        font-size: 18px;
+    }
+    .heading3{
+        font-size: 11px;
+    }
+}

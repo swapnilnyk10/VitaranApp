@@ -30,10 +30,11 @@ ALLOWED_HOSTS = []
 
 ENCRYPT_KEY = bytes(config('ENCRYPT_KEY'),'utf-8')
 # Application definition
-
+# SMS_BACKEND = 'sms.backends.console.SmsBackend'
 INSTALLED_APPS = [
     'VitaranApp',
-    'phonenumber_field',
+    'import_export',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+CRISPY_TEMPLATE_PACK = 'uni_form'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -110,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -132,3 +134,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SESSION_EXPIRE_SECONDS = 600
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_TIMEOUT_REDIRECT = '/'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

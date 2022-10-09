@@ -1,22 +1,132 @@
-{% if msg != NULL %}
-        <h2>A user with same Employee ID already exists !!!!</h2>
-        <h3>Please recheck and try again.....</h3> <br>
-{% endif %}
-<form method="POST" >
-    {% csrf_token %}
-    <label for="first_name">First Name : </label>
-    <input type="text" id = "first_name" name = "first_name" required> <br>
-    <label for="last_name">Last Name : </label>
-    <input type="text" id = "last_name" name = "last_name" required> <br>
-    <label for="Employee_ID">Employee_ID : </label>
-    <input type="number" name= "Employee_ID" id = "Employee_ID" required> <br>
-    <label for="Phone">Phone No. : </label>
-    <input type="number" id= "Phone" name = "Phone" required> <br>
-    <label for="Email"> Email : </label>
-    <input type="email" id = "Email" name = "Email" required> <br>
-    <label for="quarter_no"> Quarter No. : </label>
-    <input type="text" id = "quarter_no" name = "quarter_no" required> <br>
-    <label for="meter_no">Meter No. : </label>
-    <input type="number" id = "meter_no" name = "meter_no" required> <br>
-    <input type="submit"  value="Add User" id="submit">
-</form>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/static/css/MNNITlogo.png">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel=”stylesheet” href=”css/bootstrap.css”> <link rel=”stylesheet”
+    href=”css/bootstrap-responsive.css”>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <!-- <link rel="stylesheet" href="{% static 'testapp/style.css' %}"> -->
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="{% static 'css/bg.css'}">
+    <title>Vitaran</title>
+    <style>
+      .footer{
+        position: fixed;
+        width : 100%;
+        bottom: 0px;
+        padding-top: 8px;
+        background-color: black;
+        color : #c2c2d6;
+        height : 75px;
+        text-align: center;
+      }
+      a{
+        color : #4da6ff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div
+      style="
+        position: relative;
+        background-image: url('/static/css/MNNITlogo7.png');
+        min-height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-position-y: 20px;
+        background-origin: border-box;
+      "
+    >
+      <div>
+        <nav class="navbar navbar-expand-md navbar-light">
+          <img
+            src="/static/MNNITlogo.png"
+            class="navbar-brand-center"
+            alt="MNNIT ALLAHABAD"
+            style="
+              margin: 12px;
+              display: block;
+              max-width: 150px;
+              max-height: 78px;
+              width: auto;
+              height: auto;
+            "
+          />
+          <span class="col-md-3 mx-auto text-center btn-btn-primary">
+            <span class="navbar-brand-center" href="">
+              <h4 style="font-size: 50">
+                <h2><b>VITARAN</b> <br></h2>
+                <b>Electricity Bill Distribution Portal<br />MNNIT Allahabad</b>
+              </h4>
+            </span>
+          </span>
+        </nav>
+
+      {% if msg != NULL %}
+      <h2>A user with same Employee ID already exists !!!!</h2>
+      <h3>Please recheck and try again.....</h3>
+      <br />
+      {% endif %}
+      <form method="POST">
+        {% csrf_token %}
+        <div >
+          <div>
+            <label for="Name">Name : </label>
+            <input type="text" id="Name" name="Name" required />
+            <br />
+          </div>
+          <div>
+            <label for="Employee_ID">Employee_ID : </label>
+            <input type="number" name="Employee_ID" id="Employee_ID" required />
+            <br />
+          </div>
+          <div>
+            <label for="Email"> Email : </label>
+            <input type="email" id="Email" name="Email" required /> <br />
+          </div>
+          <div>
+            <label for="quarter_no"> Quarter No. : </label>
+            <input type="text" id="quarter_no" name="quarter_no" required />
+            <br />
+          </div>
+          <div>
+            <label for="meter_no">Meter No. : </label>
+            <input type="number" id="meter_no" name="meter_no" required />
+            <br />
+          </div>
+          <div>
+            <input type="submit" value="Add User" id="submit" />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="footer">
+      <div class="footer-content">
+        <p>Developers : <a href="https://www.linkedin.com/in/swapnil-nayak-a21728205/">Swapnil Nayak, </a> <a href="https://www.linkedin.com/in/sachin-pandey-b4044020a/">Sachin Pandey &</a> <a href="https://www.linkedin.com/in/ritik-p3003/">Ritik Prajapati </a></p>
+        <p>Under ECE Department MNNIT Allahabad</p>
+      </div>
+    </div>
+  </body>
+</html>

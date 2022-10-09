@@ -1,4 +1,5 @@
 {%extends 'base.html'%}
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +14,23 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/main.css'%}">
+    <title>Vitaran</title>
+    <style>
+        .footer{
+          position: fixed;
+          width : 100%;
+          bottom: 0px;
+          padding-top: 8px;
+          background-color: black;
+          color : #c2c2d6;
+          height : 60px;
+          text-align: center;
+        }
+        a{
+          color : #4da6ff;
+        }
+      </style>
 </head>
 
 <body>
@@ -28,14 +45,14 @@
          <div class = "alert alert-{{message.tags}}">{{message}}</div>
          {%endfor%}
     {%endif%}
-    <div class="container">
+    <div class="container form-group grow text-center div1">
         <div class="row">
             <div class="col-md-7">
                 <form method="POST" name="myform">
                     {%csrf_token%}
                     <div class="form-group">
                     <label for="">OTP</label>
-                    <input type="text" class="form-control" id="otp" name="otp" value="" />
+                    <input type="text" class="form-control" id="otp" name="otp" value="">
                     {%if flag is False%}
                     <small id="response-comment" class="form-text text-muted" style="color: red;">OTP invalid!</small> 
                     {%endif%}
@@ -46,6 +63,12 @@
         </div>
     </div>
     {%endblock%}
+    <div class="footer">
+        <div class="footer-content">
+          <p>Developers : <a href="https://www.linkedin.com/in/swapnil-nayak-a21728205/">Swapnil Nayak, </a> <a href="https://www.linkedin.com/in/sachin-pandey-b4044020a/">Sachin Pandey &</a> <a href="https://www.linkedin.com/in/ritik-p3003/">Ritik Prajapati </a></p>
+          <p>Under ECE Department MNNIT Allahabad</p>
+        </div>
+      </div>
 </body>
 
 </html>

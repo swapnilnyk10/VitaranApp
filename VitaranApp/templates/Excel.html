@@ -1,0 +1,150 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link rel="shortcut icon" href="/static/css/MNNITlogo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel=”stylesheet” href=”css/bootstrap.css”> <link rel=”stylesheet”
+  href=”css/bootstrap-responsive.css”>
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+  />
+  <!-- <link rel="stylesheet" href="{% static 'testapp/style.css' %}"> -->
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <!-- JavaScript Bundle with Popper -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"
+  ></script>
+  <link rel="stylesheet" href="{% static 'css/main_query.css'%}" />
+  <link rel="stylesheet" href="{% static 'css/index1.css'%}" />
+  <link rel="stylesheet" href="{% static 'css/index_query.css'%}" />
+  <title>Vitaran</title>
+    <title>Vitaran</title>
+    <style>
+      .footer{
+        position: sticky;
+        width : 100%;
+        bottom: 0px;
+        padding-top: 8px;
+        background-color: black;
+        color : #c2c2d6;
+        height : 75px;
+        text-align: center;
+      }
+      a{
+        color : #4da6ff;
+      }
+    </style>
+</head>
+<body>
+    <div class="background_image" id="image1">
+    <div >
+        <nav class="navbar navbar-expand-md navbar-light logo">
+          <img
+            src="/static/MNNITlogo.png"
+            class="navbar-brand-center"
+            alt="MNNIT ALLAHABAD"
+            style="
+              margin: 12px;
+              display: block;
+              max-width: 150px;
+              max-height: 78px;
+              width: auto;
+              height: auto;
+            "
+          />
+          <span class="col-md-3 mx-auto text-center btn-btn-primary">
+            <span class="navbar-brand-center" href="">
+              <h4 style="font-size: 50">
+                <h2><b>VITARAN</b> <br></h2>
+                <b>Electricity Bill Distribution Portal<br />MNNIT Allahabad</b>
+              </h4>
+            </span>
+          </span>
+        </nav>
+      </div>
+      <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+              <h3>Make Sure not to leave any entry blank in Excel file</h3>
+              <h5>(Write Vacant for blank text entries and 0 for blank numeric entries in Excel File)</h5>
+              <h5>(Enter the last rate in RateP6 (upper bound))</h5>
+              <h5>(Leave unused unit and rate fields as it is)</h5>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+            <label for="excel">Select an Excel file:</label>
+            <input type="file" id="excel" class="form-control" name="excel" required><br>
+            <label for="month">Enter Month</label >
+            <select name="month" id="month" required>
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option> 
+            </select><br>
+            <label for="year">Year : </label>
+            <input type="number" id = "year" class="form-control" name = "year" required> <br>
+            <label for="rateP1">Rate P1 : </label>
+            <input type="number" id = "rateP1" class="form-control" step="0.01" name = "rateP1" required value = 0> <br>
+            <label for="unitP1">Unit P1 : </label>
+            <input type="number" id = "unitP1" class="form-control" name = "unitP1" required value = 0> <br>
+            <label for="rateP2">Rate P2 : </label>
+            <input type="number" id = "rateP2"class="form-control" step="0.01" name = "rateP2" required value = 0> <br>
+            <label for="unitP2">Unit P2 : </label>
+            <input type="number" id = "unitP2" class="form-control" name = "unitP2" required value = 0> <br>
+            <label for="rateP3">Rate P3: </label>
+            <input type="number" id = "rateP3" class="form-control" step="0.01" name = "rateP3" required value = 0> <br>
+            <label for="unitP3">Unit P3 : </label>
+            <input type="number" id = "unitP3" class="form-control" name = "unitP3" required value = 0> <br>
+            <label for="rateP4">Rate P4: </label>
+            <input type="number" id = "rateP4" class="form-control" step="0.01" name = "rateP4" required value = 0> <br>
+            <label for="unitP4">Unit P4 : </label>
+            <input type="number" id = "unitP4" class="form-control" name = "unitP4" required value = 0> <br>
+            <label for="rateP5">Rate P5: </label>
+            <input type="number" id = "rateP5" class="form-control" step="0.01" name = "rateP5" required value = 0> <br>
+            <label for="unitP5">Unit P5 : </label>
+            <input type="number" id = "unitP5" class="form-control" name = "unitP5" required value = 0> <br>
+            <label for="rateP6">Rate P6 (No Upper Bound): </label>
+            <input type="number" id = "rateP6" class="form-control" step="0.01" name = "rateP6" required value = 0> <br>
+            <label for="designation">Designation (For signature at end): </label>
+            <input type="text" id = "designation" class="form-control" name = "designation" required value = "Executive Engineer"> <br>
+            {%if flag is True%}
+            <small id="response-comment" class="form-text text-muted" style="color: red;">Wrong Format....Please upload an excel file</small>
+            {%endif%}
+            </div>
+            <button type="submit" class="btn btn-primary" id="submit">Upload & Add Bills</button>
+            
+        </form>
+    </div>
+</div>
+</div>
+</div>
+<div class="footer">
+  <div class="footer-content">
+    <p>Developers : <a href="https://www.linkedin.com/in/swapnil-nayak-a21728205/">Swapnil Nayak, </a> <a href="https://www.linkedin.com/in/sachin-pandey-b4044020a/">Sachin Pandey &</a> <a href="https://www.linkedin.com/in/ritik-p3003/">Ritik Prajapati </a></p>
+    <p>Under ECE Department MNNIT Allahabad</p>
+  </div>
+</div>
+</body>
+</html>

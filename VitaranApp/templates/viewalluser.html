@@ -2,53 +2,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">  
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>  
-    <title>View Users</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+  <link rel="shortcut icon" href="/static/css/MNNITlogo.png">
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel=”stylesheet” href=”css/bootstrap.css”> <link rel=”stylesheet”
+  href=”css/bootstrap-responsive.css”>
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+  />
+  <!-- <link rel="stylesheet" href="{% static 'testapp/style.css' %}"> -->
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <!-- JavaScript Bundle with Popper -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"
+  ></script>
+  <link rel="stylesheet" href="{% static 'css/main.css'}">
+  <link rel="stylesheet" href="{% static 'css/main.css'}">
+    <link rel="stylesheet" href="{% static 'css/main_query.css'%}">
+  <link rel="stylesheet" href="{% static 'css/index1.css'%}">
+  <link rel="stylesheet" href="{% static 'css/monthly_query.css'%}">
+  <link rel="stylesheet" href="{% static 'css/bg.css'}">
+  <title>Vitaran</title>
+  <style>
+    .footer{
+      position: fixed;
+      width : 100%;
+      bottom: 0px;
+      padding-top: 8px;
+      background-color: black;
+      color : #c2c2d6;
+      height : 60px;
+      text-align: center;
+    }
+    a{
+      color : #4da6ff;
+    }
+  </style>
 </head>
 <body>
+    <div class="background_image" id="image1">
     <div>
-        <nav class="navbar navbar-expand-lg bg-light">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Vitaran</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">button 1</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">button 2</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">button 3</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Dropdown link
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        </div>
-    <div class="container-md">
-        {% for ins in alluser %}
-        <p>First Name : {{ins.first_name}}</p>
-        <p>Last Name : {{ins.last_name}}</p>
-        <p>Employee_ID : {{ins.Employee_ID}}</p><hr> <br>
-        {% endfor %}
+      <nav class="navbar navbar-expand-md navbar-light logo">
+        <img
+          src="/static/MNNITlogo.png"
+          class="navbar-brand-center"
+          alt="MNNIT ALLAHABAD"
+          style="
+            margin: 12px;
+            display: block;
+            max-width: 150px;
+            max-height: 78px;
+            width: auto;
+            height: auto;
+          "
+        />
+        <span class="col-md-3 mx-auto text-center" id="heading">
+          <span class="navbar-brand-center" href="">
+            <h4 style="font-size: 50">
+              <h2><b>VITARAN</b> <br></h2>
+              <b>Electricity Bill Distribution Portal<br />MNNIT Allahabad</b>
+            </h4>
+          </span>
+        </span>
+      </nav>
     </div>
+
+
+    <div class="input-group w-25" style="margin: auto;">
+      <div class="form-inline">
+        <input type="search" id="myInput" class="form-control input-sm mr-sm-2" size="50px" placeholder="Search by Employee ID" onkeyup="searchFun()">
+      </div>
+    </div>
+    <div class="table-responsive-sm" style="padding: 100px;">
+    <table id="myTable" class="table table-striped table-bordered table-hover table-sm">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col"><center>Name</center></th>
+        <th scope="col"><center>Employee ID</center></th>
+        <th scope="col"><center>Email</center></th>
+        <th scope="col"><center>Quarter No.</center></th>
+        <th scope="col"><center>Meter No.</center></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ins in alluser %}
+      <tr>
+         <td><center>{{ins.Name}}</center></td>
+         <td><center>{{ins.Employee_ID}}</center></td>
+         <td><center>{{ins.Email}}</center></td>
+         <td><center>{{ins.quarter_no}}</center></td>
+         <td><center>{{ins.meter_no}}</center></td>
+      </tr>
+      {% endfor %}
+      </tbody>
+      </table>
+    </div>
+  <div class="footer">
+    <div class="footer-content">
+      <p>Developers : <a href="https://www.linkedin.com/in/swapnil-nayak-a21728205/">Swapnil Nayak, </a> <a href="https://www.linkedin.com/in/sachin-pandey-b4044020a/">Sachin Pandey &</a> <a href="https://www.linkedin.com/in/ritik-p3003/">Ritik Prajapati </a></p>
+      <p>Under ECE Department MNNIT Allahabad</p>
+    </div>
+  </div>
+
+  <script>
+    const searchFun = () =>{
+        let filter = document.getElementById('myInput').value;
+        let myTable = document.getElementById('myTable');
+        let tr = myTable.getElementsByTagName('tr');
+
+        for(var i=0; i<tr.length; i++){
+             let td = tr[i].getElementsByTagName('td')[1];
+             if(td){
+                let textvalue = td.textContent || td.innerHTML;
+
+                if(textvalue.indexOf(filter) > -1){
+                   tr[i].style.display="";
+                }else{
+                  tr[i].style.display="none";
+                }
+             }
+        }
+    }
+  </script>
 </body>
 </html>
